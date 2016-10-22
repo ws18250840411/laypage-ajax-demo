@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="./css/paging.css">
+</head>
+<style type="text/css">
+    #list{float:left;width:680px;}
+    #list ul li{ float:left;width:220px; height:260px; margin:2px}
+    #list ul li img{width:220px; height:220px}
+    #list ul li p{line-height:22px}
+    #pagecount{float:left;width:500px; margin:10px auto 2px auto; padding-bottom:20px; text-align:center}
+    #pagecount span{margin:4px; font-size:14px}
+    #list ul li#loading{width:120px; height:32px; line-height:32px; border:1px solid #d3d3d3; position:absolute; top:35%; left:42%; text-align:center; background:#f7f7f7 url(loading.gif) no-repeat 8px 8px;-moz-box-shadow:1px 1px 2px rgba(0,0,0,.2); -webkit-box-shadow:1px 1px 2px rgba(0,0,0,.2); box-shadow:1px 1px 2px rgba(0,0,0,.2);}
+    #pageToolbar {
+      float: left;
+    }
+</style>
+<body>
+<div id="main">
+    <div id="pageToolbar"></div>
+    <h4 class="top_title"><a href="http://www.helloweba.com/view-blog-195.html">Ajax实现分页显示数据</a></h4>
+    <div id="list">
+        <ul></ul>
+    </div>
+    
+</div>
+</body>
+<script src="./js/jquery-1.11.2.js"></script>
+<script src="./js/jquery.page.js"></script>
+<script type="text/javascript">
+
+//运行
+var curPage = 1; //当前页码
+var total,pageSize,totalPage;
+
+function demo(curr){
+    $.post('./php/pages.php', {pageNum : curr || 1}, function(res){
+        console.log(res);
+        $("#list ul").empty();
+        var li = "";
+        var list = res.list;
+        $.each(list,function(index,array){ //遍历json数据列
+            li += "<li><a href='#'><img src='"+array['pic']+"'>"+array['title']+"</a></li>";
+        });
+        $("#list ul").append(li);
+        // 调用插件
+        var pagesize = res.pageSize;
+        var count = res.total;
+        $('#pageToolbar').wbkpaging({
+          pagesize:pagesize,
+          count:count,
+          toolbar:true,
+          callback:function(page,size,count){
+          demo(page);
+        }});
+        
+    },'json');
+};
+demo();
+</script>
+</html>

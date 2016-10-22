@@ -1,0 +1,67 @@
+.page-container {
+	color:#666;
+	font-size: 12px;
+}
+.page-container ul {
+	overflow: hidden;
+	text-align: center;
+}
+.page-container ul,.page-container li {
+	list-style: none;
+}
+.page-container li {
+	display: inline-block;
+	padding:3px 6px;
+	margin-left: 5px;
+	color:#666;
+}
+.page-container li.wek-page {
+	cursor: pointer;
+	border:1px solid #ddd;
+	border-radius: 2px;
+}
+.page-container li.pager:hover,.page-container li.focus {
+	background-color: #288df0;
+	color:#FFFFFF;
+}
+.page-container li.paging-ellipse {
+	border:none;
+}
+.page-container li.paging-toolbar {
+	padding:0;
+}
+.page-container li.paging-toolbar select {
+	height:22px;
+	border:1px solid #ddd;
+	color: #666;
+}
+.page-container li.paging-toolbar input {
+	line-height: 20px;
+	height:20px;
+	padding:0;
+	border:1px solid #ddd;
+	text-align: center;
+	width: 30px;
+	margin:0 0 0 5px;
+	vertical-align: middle;
+}
+.page-container li.paging-toolbar a {
+	vertical-align: middle;
+	text-decoration: none;
+	display: inline-block;
+	height:20px;
+	border:1px solid #ddd;
+	vertical-align: top;
+	border-radius: 2px;
+	line-height: 20px;
+	padding:0 3px;
+	cursor: pointer;
+	margin-left: 5px;
+	color: #666;
+}
+.page-container li.pager-disabled,.page-container li.pager-disabled:hover {
+	background-color: #f6f6f6;
+	;cursor: default;
+	border:none;
+	color:#ddd;
+}
